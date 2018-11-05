@@ -7,8 +7,8 @@ Drop TABLE if EXISTS `GeneID`;
 
 CREATE TABLE `GeneID` (
 	`NCBI_ProteinID` varchar(255) NOT NULL PRIMARY KEY,
-    `NCBI_GeneID` varchar(255) NOT NULL,
-    `Annotation` varchar(255) NOT NULL
+    `NCBI_GeneID` varchar(255)  NULL,
+    `Annotation` varchar(255)  NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `GeneID` VALUES ('ProteinA1','GeneA1','Chromatin modeling'),('ProteinA2','GeneA2','RNA processing'),
@@ -38,16 +38,15 @@ CREATE TABLE `Ortholog` (
 
 
 CREATE TABLE `RNA_seq_Sample_info` (
-	`ProteinNcbiID` varchar(255) NOT NULL PRIMARY KEY,
+	`id`int auto_increment NOT NULL PRIMARY KEY,
+	`ProteinNcbiID` varchar(255) NOT NULL,
     `Sample_info` varchar(255) DEFAULT NULL,
-    `Expression` varchar(255) DEFAULT NULL,
-	CONSTRAINT `RNA_seq_Sample_info` FOREIGN KEY (`ProteinNcbiID`)
-		REFERENCES `GeneID`(`NCBI_ProteinID`) on delete cascade
-)ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+    `Expression` float DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-INSERT into `RNA_seq_Sample_info` VALUES ('ProteinA1','GSE13455','67.1'),
-('ProteinA4','GSE134545','23.5'),('ProteinA2','GSE13456','89.1');
+INSERT into `RNA_seq_Sample_info`  (ProteinNcbiID, Sample_info, Expression) VALUES ('ProteinA1','GSE13455',67.1),
+('ProteinA4','GSE134545',23.5),('ProteinA2','GSE13456',89.1);
 
 
 
@@ -55,28 +54,28 @@ INSERT into `RNA_seq_Sample_info` VALUES ('ProteinA1','GSE13455','67.1'),
 DROP table if EXISTS `Experimental_validation`;
 
 CREATE TABLE `Experimental_validation` (
-	`id` varchar(255) NOT NULL PRIMARY KEY,
+	`id` int  auto_increment NOT NULL PRIMARY KEY,
     `Experimental_Type` varchar(255) DEFAULT NULL,
-    `PubmedID` varchar(255) DEFAULT NULL
+    `PubmedID` int DEFAULT NULL
 
 )ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
-INSERT into `Experimental_validation` VALUES ('1','Yeast-2-Hybrid','123458'),
-('2','Mass Spec','234566'),('3','Yeast-2-Hybrid','CO-IP'),
-('4','Pull-down','123456');
+INSERT into `Experimental_validation` (Experimental_Type, PubmedID) VALUES ('Yeast-2-Hybrid',123458),
+('Mass Spec',234566),('Yeast-2-Hybrid',129586),
+('Pull-down',123456);
 
 
 -- /*Create  the table for organism*/
 DROP table if EXISTS `Organism`;
 
 CREATE TABLE `Organism` (
-  `Organism_id` varchar(255) NOT NULL,
-  `Organism_Type` varchar(255) DEFAULT NULL,
+  `Organism_id` int  auto_increment NOT NULL,
+  `Organism_Type` varchar(255) NOT NULL,
   PRIMARY KEY (`Organism_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
    
  
-INSERT into `Organism` VALUES ('1', ' Mouse'),('2', 'Chicken'),('3','Bakers Yeast'),
-('4','Catfish'),('5','Zebrafish');
+INSERT into `Organism` (Organism_Type) VALUES (' Mouse'),( 'Chicken'),('Bakers Yeast'),
+('Catfish'),('Zebrafish');
 
 
