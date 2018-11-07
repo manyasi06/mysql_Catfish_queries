@@ -41,3 +41,7 @@ delete from RNA_seq_Sample_info where Sample_info =(:removeSample);
 
 -- add new RNA-seq experiment
 INSERT INTO RNA_seq_Sample_info (ProteinNcbiID, Sample_info, Expression) values (:PI_ID, :Sample_ID, :Expression_val);
+
+
+#Normalized Query
+insert into ortholog (ProteinIDA, Organism, ProteinIDB, Experimental_condition) values ('ProteinA3',(select Organism_id from Organism where Organism_Type = "Zebrafish" and Organism_Type is not null),'ProteinA4','Yeast-2-hybrid');

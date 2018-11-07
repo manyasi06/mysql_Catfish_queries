@@ -4,6 +4,19 @@
 DROP table if EXISTS `RNA_seq_Sample_info`;
 DROP TABLE IF EXISTS `Ortholog`;
 Drop TABLE if EXISTS `GeneID`;
+DROP table if EXISTS `Organism`;
+DROP table if EXISTS `Experimental_validation`;
+
+
+CREATE TABLE `Organism` (
+  `Organism_id` int  auto_increment NOT NULL,
+  `Organism_Type` varchar(255) NOT NULL,
+  PRIMARY KEY (`Organism_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+   
+ 
+INSERT into `Organism` (Organism_Type) VALUES (' Mouse'),( 'Chicken'),('Bakers Yeast'),
+('Catfish'),('Zebrafish');
 
 CREATE TABLE `GeneID` (
 	`NCBI_ProteinID` varchar(255) NOT NULL PRIMARY KEY,
@@ -45,13 +58,13 @@ CREATE TABLE `RNA_seq_Sample_info` (
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+
 INSERT into `RNA_seq_Sample_info`  (ProteinNcbiID, Sample_info, Expression) VALUES ('ProteinA1','GSE13455',67.1),
 ('ProteinA4','GSE134545',23.5),('ProteinA2','GSE13456',89.1);
 
 
 
 -- /* Experimental Validation Table */
-DROP table if EXISTS `Experimental_validation`;
 
 CREATE TABLE `Experimental_validation` (
 	`id` int  auto_increment NOT NULL PRIMARY KEY,
@@ -65,17 +78,5 @@ INSERT into `Experimental_validation` (Experimental_Type, PubmedID) VALUES ('Yea
 ('Pull-down',123456);
 
 
--- /*Create  the table for organism*/
-DROP table if EXISTS `Organism`;
-
-CREATE TABLE `Organism` (
-  `Organism_id` int  auto_increment NOT NULL,
-  `Organism_Type` varchar(255) NOT NULL,
-  PRIMARY KEY (`Organism_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
-   
- 
-INSERT into `Organism` (Organism_Type) VALUES (' Mouse'),( 'Chicken'),('Bakers Yeast'),
-('Catfish'),('Zebrafish');
 
 
