@@ -50,9 +50,9 @@ select Organism_id from Organism where Organism_Type = "Zebrafish" and Organism_
 
 insert into ortholog (ProteinIDA, Organism, ProteinIDB, Experimental_condition) values 
 (
-(select id from GeneID where NCBI_ProteinID = "ProteinA1"),
+(select id from GeneID where NCBI_ProteinID = "ProteinA11"),
 (select Organism_id from Organism where Organism_Type = "Zebrafish" and Organism_Type is not null),
-(select id from GeneID where NCBI_ProteinID = "ProteinA4"),
+(select id from GeneID where NCBI_ProteinID = "ProteinA3"),
 'Yeast-2-hybrid'
 );
 
