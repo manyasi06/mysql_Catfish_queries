@@ -16,7 +16,7 @@ select NCBI_ProteinID, ProteinIDB, Annotation, Organism From GeneID as a
 inner join Ortholog as b On a.NCBI_ProteinID = b.ProteinIDA order by Organism;
 
 -- add data for the organism table
-insert into Organism (Organism_id, Organism_Type) Value (:Org_id, :type_of_organism);
+insert into Organinsm (Organism_id, Organism_Type) Value (:Org_id, :type_of_organism);
 
 -- Add a new ortholog from GeneID and ortholog information;
 insert into GeneID ( NCBI_ProteinID, NCBI_GeneID, Annotation) values (:proteinID , : geneID,:Annotation);
@@ -41,7 +41,3 @@ delete from RNA_seq_Sample_info where Sample_info =(:removeSample);
 
 -- add new RNA-seq experiment
 INSERT INTO RNA_seq_Sample_info (ProteinNcbiID, Sample_info, Expression) values (:PI_ID, :Sample_ID, :Expression_val);
-
-
-#Normalized Query
-insert into ortholog (ProteinIDA, Organism, ProteinIDB, Experimental_condition) values ('ProteinA3',(select Organism_id from Organism where Organism_Type = "Zebrafish" and Organism_Type is not null),'ProteinA4','Yeast-2-hybrid');
